@@ -18,5 +18,6 @@ export class ProductsComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  onEdit(){}
+  onDelete(){}
 }
