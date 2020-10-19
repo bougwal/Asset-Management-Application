@@ -168,4 +168,13 @@ products$ = new BehaviorSubject<IProduct[]>(this.products);
 
 
   constructor() { }
+
+  removeProduct(product){
+    const index = this.products.indexOf(product)
+    this.products = [
+      ...this.products.slice(0, index),
+      ...this.products.slice(index + 1)
+    ]
+    this.products$.next(this.products)
+  }
 }

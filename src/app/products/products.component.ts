@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
   products$: Observable<IProduct[]> = this.productService.products$
+  delete = false;
+  productToBeDeleted;
   constructor(private productService: ProductService) { }
 
   trackById(item){
@@ -19,5 +21,16 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
   onEdit(){}
-  onDelete(){}
+  onDelete(product){
+    this.delete = true;
+    this.productToBeDeleted = product;
+  }
+  handleCancel(){
+    this.delete = false;
+  }
+  confirmDelete(){
+    this.handleCancel()
+    //remove product in our products service
+    this.productService.removeProduct(this.productToBeDeleted)
+  }
 }
