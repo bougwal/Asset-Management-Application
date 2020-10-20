@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'in-product',
@@ -42,8 +42,8 @@ selectDevice(device){
   constructor(private fb: FormBuilder) {
     this.productForm = this.fb.group({
       basic: fb.group({
-        name: '',
-        description: '',
+        name: ['', Validators.required],
+        description: ['', Validators.required],
         active: false,
         features: fb.array([
           fb.control('')
