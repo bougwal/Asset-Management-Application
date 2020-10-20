@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 
 export interface IProduct{
   id: number;
-  name: string
+  name: string;
   active: boolean;
   expirationDate: string;
   description: string;
   type: string;
-  features?: string[]
+  features?: string[];
 }
 
 function generateID(){
@@ -169,12 +169,13 @@ products$ = new BehaviorSubject<IProduct[]>(this.products);
 
   constructor() { }
 
+  // tslint:disable-next-line: typedef
   removeProduct(product){
-    const index = this.products.indexOf(product)
+    const index = this.products.indexOf(product);
     this.products = [
       ...this.products.slice(0, index),
       ...this.products.slice(index + 1)
-    ]
-    this.products$.next(this.products)
+    ];
+    this.products$.next(this.products);
   }
 }

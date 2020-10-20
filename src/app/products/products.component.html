@@ -24,6 +24,7 @@
 </clr-datagrid>
 <in-delete-product-modal
 *ngIf="delete"
+[product]="productToBeDeleted"
 (cancel)="handleCancel()"
 (confirm)="confirmDelete()"
 >

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {IProduct, ProductService} from '../product.service'
 
 import { Observable } from 'rxjs';
@@ -10,14 +10,11 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent implements OnInit {
-  products$: Observable<IProduct[]> = this.productService.products$
+  products$: Observable<IProduct[]> = this.productService.products$;
   delete = false;
   productToBeDeleted;
   constructor(private productService: ProductService) { }
 
-  trackById(item){
-    return item.id;
-  }
   ngOnInit(): void {
   }
   onEdit(){}
@@ -30,7 +27,10 @@ export class ProductsComponent implements OnInit {
   }
   confirmDelete(){
     this.handleCancel()
-    //remove product in our products service
-    this.productService.removeProduct(this.productToBeDeleted)
+    // remove product in our products service
+    this.productService.removeProduct(this.productToBeDeleted);
+  }
+  trackById(index, item){
+    return item.id;
   }
 }
