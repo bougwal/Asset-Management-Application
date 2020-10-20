@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'in-product',
@@ -58,5 +58,14 @@ selectDevice(device){
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line: typedef
   handleClose(){}
+
+  get basicFeatures(): FormArray{
+    return this.productForm.get('basic.features') as FormArray;
+  }
+  // tslint:disable-next-line: typedef
+  addFeature(){
+    this.basicFeatures.push(this.fb.control(''))
+  }
 }
