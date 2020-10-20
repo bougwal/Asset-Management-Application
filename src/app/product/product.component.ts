@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'in-product',
@@ -32,4 +30,5 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleClose(){}
 }
