@@ -8,7 +8,35 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {
-
+  deviceType ='tablet';
+  deviceTypes =[{
+    name: 'Tablet',
+    icon: 'tablet',
+  },
+  {
+    name: 'Laptop',
+    icon: 'computer',
+  },
+  {
+    name: 'Phone',
+    icon: 'mobile',
+  },
+  {
+    name: 'Monitor',
+    icon: 'display'
+  },
+  {
+    name: 'Car',
+    icon: 'car'
+  },
+  {
+    name: 'Bike',
+    icon: 'bicycle'
+  }
+];
+selectDevice(device){
+  this.deviceType = device.icon;
+}
   productForm: FormGroup;
   @Input() product;
   constructor(private fb: FormBuilder) {
