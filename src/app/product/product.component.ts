@@ -1,9 +1,8 @@
-import * as _ from 'lodash';
-
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
+import pick from 'lodash-es';
 
 function minDateValidation(date: Date): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
@@ -93,11 +92,11 @@ selectDevice(device){
     if (this.product) {
       this.productForm.setValue({
           basic: {
-              ..._.pick(this.product, ['name', 'description', 'active']),
+              ...pick(this.product, ['name', 'description', 'active']),
               features: this.product.features || [''],
           },
           expiration: {
-            ..._.pick(this.product, ['expirationDate']),
+            ...pick(this.product, ['expirationDate']),
           }
       });
       this.deviceType = this.product.type;
