@@ -93,7 +93,7 @@ selectDevice(device){
       this.productForm.setValue({
           basic: {
               ...pick(this.product, ['name', 'description', 'active']),
-              features: this.product.features || [''],
+              features: [this.product.features] || [''],
           },
           expiration: {
             ...pick(this.product, ['expirationDate']),
