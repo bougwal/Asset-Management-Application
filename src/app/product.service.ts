@@ -43,7 +43,7 @@ export class ProductService {
     active: false,
     description: 'Used for two months',
     expirationDate: '01/01/2020',
-    type: 'TV'
+    type: 'mobile'
   },
   {
     id: generateID(),
@@ -51,7 +51,7 @@ export class ProductService {
     active: false,
     description: '700.000 km',
     expirationDate: '01/08/2021',
-    type: 'Car'
+    type: 'car'
   },
   {
     id: generateID(),
@@ -59,7 +59,7 @@ export class ProductService {
     active: true,
     description: 'New',
     expirationDate: '12/02/2020',
-    type: 'Moto-Bike'
+    type: 'bicycle'
   }, {
     id: generateID(),
     name: 'Huawei y4',
@@ -90,7 +90,7 @@ export class ProductService {
     active: false,
     description: 'Used for two months',
     expirationDate: '01/01/2020',
-    type: 'TV'
+    type: 'step-forward-2'
   },
   {
     id: generateID(),
@@ -98,7 +98,7 @@ export class ProductService {
     active: false,
     description: '700.000 km',
     expirationDate: '01/08/2021',
-    type: 'Car'
+    type: 'car'
   },
   {
     id: generateID(),
@@ -106,7 +106,7 @@ export class ProductService {
     active: true,
     description: 'New',
     expirationDate: '12/02/2020',
-    type: 'Moto-Bike'
+    type: 'bicycle'
   }, {
     id: generateID(),
     name: 'Huawei y4',
@@ -137,7 +137,7 @@ export class ProductService {
     active: false,
     description: 'Used for two months',
     expirationDate: '01/01/2020',
-    type: 'TV'
+    type: 'step-forward-2'
   },
   {
     id: generateID(),
@@ -145,7 +145,7 @@ export class ProductService {
     active: false,
     description: '700.000 km',
     expirationDate: '01/08/2021',
-    type: 'Car'
+    type: 'car'
   },
   {
     id: generateID(),
@@ -153,7 +153,7 @@ export class ProductService {
     active: true,
     description: 'New',
     expirationDate: '12/02/2020',
-    type: 'Moto-Bike'
+    type: 'bike'
   }, {
     id: generateID(),
     name: 'Huawei y4',

@@ -1,5 +1,7 @@
+import * as _ from 'lodash';
+
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
 
@@ -18,7 +20,7 @@ function minDateValidation(date: Date): ValidatorFn {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnChanges {
   @Output() finish = new EventEmitter();
   @ViewChild('productWizard', {static: false}) productWizard: ClrWizard;
   constructor(private fb: FormBuilder) {
@@ -74,6 +76,10 @@ export class ProductComponent implements OnInit {
   {
     name: 'Bike',
     icon: 'bicycle'
+  },
+  {
+    name: 'TV',
+    icon: 'step-forward-2'
   }
 ];
   productForm: FormGroup;
@@ -84,6 +90,21 @@ selectDevice(device){
 }
 
   ngOnInit(): void {
+    if (this.product) {
+      this.productForm.setValue({
+          basic: {
+              ..._.pick(this.product, ['name', 'description', 'active']),
+              features: this.product.features || [''],
+          },
+          expiration: {
+            ..._.pick(this.product, ['expirationDate']),
+          }
+      });
+      this.deviceType = this.product.type;
+  }
+}
+  ngOnChanges(){
+    this.ngOnInit();
   }
 
   // tslint:disable-next-line: typedef
