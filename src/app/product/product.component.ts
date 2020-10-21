@@ -1,5 +1,7 @@
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+
+import { ClrWizard } from '@clr/angular';
 
 function minDateValidation(date: Date): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
@@ -17,6 +19,8 @@ function minDateValidation(date: Date): ValidatorFn {
 })
 
 export class ProductComponent implements OnInit {
+  @Output() finish = new EventEmitter();
+  @ViewChild('productWizard', {static: false}) productWizard: ClrWizard;
   constructor(private fb: FormBuilder) {
     this.productForm = this.fb.group({
       basic: fb.group({
@@ -83,10 +87,37 @@ selectDevice(device){
   }
 
   // tslint:disable-next-line: typedef
-  handleClose(){}
-  // tslint:disable-next-line: typedef
   addFeature(){
     this.basicFeatures.push(this.fb.control(''))
   }
 
+  // tslint:disable-next-line: typedef
+  get isBasicInvalid(){
+    return this.productForm.get('basic').invalid;
+  }
+  // tslint:disable-next-line: typedef
+  get isExpirationInvalid(): boolean{
+    return this.productForm.get('expiration').invalid;
+  }
+  handleClose(){
+    this.finish.emit();
+    this.handleClose();
+  }
+  close(){
+    this.productForm.reset();
+    this.deviceType = 'tablet';
+    this.productWizard.goTo(this.productWizard.pageCollection.pages.first.id);
+    this.productWizard.reset()
+  }
+  // tslint:disable-next-line: typedef
+  handleFinish(){
+    this.finish.emit({
+      product: {
+        type: this.deviceType,
+        ...this.productForm.get('basic').value,
+        ...this.productForm.get('expiration').value,
+      }
+    });
+    this.close()
+  }
 }

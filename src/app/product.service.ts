@@ -169,6 +169,30 @@ products$ = new BehaviorSubject<IProduct[]>(this.products);
 
   constructor() { }
 
+  addPoduct(product){
+    this.products = [
+      {
+        id: generateID(),
+        ...product,
+      },
+      ...this.products
+    ];
+    this.products$.next(this.products);
+  }
+
+  editProduct(id, product){
+    const index = this.products.findIndex(p => p.id === id);
+    this.products = [
+      ...this.products.slice(0, index),
+      {
+        id,
+        ...product
+      },
+      ...this.products.slice(index + 1)
+
+    ];
+    this.products$.next(this.products)
+  }
   // tslint:disable-next-line: typedef
   removeProduct(product){
     const index = this.products.indexOf(product);

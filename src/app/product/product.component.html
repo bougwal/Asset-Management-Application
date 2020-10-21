@@ -35,6 +35,15 @@
         <label for="product-name">Product Name *</label>
         <input clrInput type="text" id="product-name" placeholder="IPhone X..." formControlName="name">
         <clr-control-error>This Field Is Required !</clr-control-error>
+        <ng-template clrPageButtons>
+          <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+          <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+          <clr-wizard-button
+            [clrWizardButtonDisabled]="isBasicInvalid"
+            [type]="'next'"
+            >Next</clr-wizard-button
+          >
+          </ng-template>
       </clr-input-container>
       <!--Toggle switch for active-->
       <div class="toggle-switch">
@@ -61,6 +70,9 @@
       <input type="date" clrInput clrDate formControlName="expirationDate">
       <clr-control-error class="customValidation">{{ expirationError}}</clr-control-error>
     </clr-input-container>
+    <ng-template clrPageButtons>
+      <clr-wizard-button [clrWizardButtonDisabled]="isExpirationInvalid" (click)="handleFinish()" [type]="'finish'">Finish</clr-wizard-button>
+    </ng-template>
   </clr-wizard-page>
   </clr-wizard>
 </form>
