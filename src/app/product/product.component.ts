@@ -20,6 +20,7 @@ function minDateValidation(date: Date): ValidatorFn {
 })
 
 export class ProductComponent implements OnInit, OnChanges {
+  @Input() product;
   @Output() finish = new EventEmitter();
   @ViewChild('productWizard', {static: false}) productWizard: ClrWizard;
   constructor(private fb: FormBuilder) {
@@ -82,7 +83,6 @@ export class ProductComponent implements OnInit, OnChanges {
   }
 ];
   productForm: FormGroup;
-  @Input() product;
 // tslint:disable-next-line: typedef
 selectDevice(device){
   this.deviceType = device.icon;
@@ -121,7 +121,7 @@ selectDevice(device){
   }
   handleClose(){
     this.finish.emit();
-    this.handleClose();
+    this.close();
   }
   close(){
     this.productForm.reset();
